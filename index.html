@@ -6,6 +6,18 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link
+    type="text/css"
+    rel="stylesheet"
+    href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+  />
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+  />
+  <script src="https://unpkg.com/vue"></script>
+        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
     <style>
         .math {
             display: grid;
@@ -20,22 +32,37 @@
             width: 90%;
             margin: auto;
         }
+        .page-holder {
+  min-height: 100vh;
+}
+
+.bg-cover {
+  background-size: cover !important;
+}
   
     </style>
 </head>
 <body>
 <main>
-    <h1>The Bookshop</h1>
+    <div style="background-color: whitesmoke;" class="page-holder bg-cover">
+    <div class="container py-5">
+        <header class="text-center text-black py-5">
+    <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
+</header>
+<div class="text-black">
     <div class="math">
         <img v-bind:src="subject.image">
         <div class="subjectDetails">
-            <h2 v-html="subject.title"></h2>
-            <p v-text="subject.location"></p>
-            <p>Price: "price variable here"</p>
-            <p>Number of spaces: "spaces calculation here"</p>
+            <h2 class="lead" class="lead" v-html="subject.title"></h2>
+            <p class="lead" v-text="subject.location"></p>
+            <p class="lead">Price: "price variable here"</p>
+            <p class="lead">Number of spaces: "spaces calculation here"</p>
             <input type="button" v-on:click="addToCart" v-if="visible" value="Add to Cart">
             <button disabled='disabled' v-else>Add To Cart</button>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 </main>
 <script type="text/javascript">
