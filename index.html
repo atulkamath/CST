@@ -20,11 +20,12 @@
             width: 90%;
             margin: auto;
         }
+  
     </style>
 </head>
 <body>
 <main>
-    <h1>After School Club</h1>
+    <h1>The Bookshop</h1>
     <div class="math">
         <img v-bind:src="subject.image">
         <div class="subjectDetails">
@@ -32,7 +33,8 @@
             <p v-text="subject.location"></p>
             <p>Price: "price variable here"</p>
             <p>Number of spaces: "spaces calculation here"</p>
-            <input type="button" value="Add to Cart">
+            <input type="button" v-on:click="addToCart" v-if="visible" value="Add to Cart">
+            <button disabled='disabled' v-else>Add To Cart</button>
         </div>
     </div>
 </main>
@@ -48,10 +50,21 @@
                 spaces: 5,
                 image: "images/math.jpg"
             },
-            
+            cart: [],
         },
         methods: {
-           
+            addToCart: function () {
+                this.cart.push(this.subject.id);
+            }
+        },
+        computed:{
+            cartCount:function (){
+                return this.cart.length || '';
+                console.log(this.cart.length)
+            },
+            visible: function (){
+                return this.subject.spaces > this.cartCount
+            },
         }
     });
 </script>
