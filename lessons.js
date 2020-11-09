@@ -3,7 +3,7 @@ let lessons=[
         id: 1001,
         title: "<em>Math</em>",
         location: "London",
-        price: 100,
+        price: 2000,
         spaces: 5,
         image: "images/math.jpg"
     },
@@ -11,7 +11,7 @@ let lessons=[
         id: 1002,
         title: "<em>Science</em>",
         location: "London",
-        price: 100,
+        price: 200,
         spaces: 5,
         image: "images/science.jpg"
     },
@@ -19,7 +19,7 @@ let lessons=[
         id: 1003,
         title: "<em>English</em>",
         location: "London",
-        price: 100,
+        price: 300,
         spaces: 5,
         image: "images/english.jpg"
     },
@@ -27,7 +27,7 @@ let lessons=[
         id: 1004,
         title: "<em>Computers</em>",
         location: "London",
-        price: 100,
+        price: 400,
         spaces: 5,
         image: "images/computer.jpg"
     },
@@ -35,7 +35,7 @@ let lessons=[
         id: 1005,
         title: "<em>Physics</em>",
         location: "London",
-        price: 100,
+        price: 500,
         spaces: 5,
         image: "images/physics.jpg"
     },
@@ -43,7 +43,7 @@ let lessons=[
         id: 1006,
         title: "<em>Chemistry</em>",
         location: "London",
-        price: 100,
+        price: 600,
         spaces: 5,
         image: "images/chem.jpg"
     },
@@ -51,7 +51,7 @@ let lessons=[
         id: 1007,
         title: "<em>Sales</em>",
         location: "London",
-        price: 100,
+        price: 700,
         spaces: 5,
         image: "images/sales.png"
     },
@@ -59,7 +59,7 @@ let lessons=[
         id: 1008,
         title: "<em>Architecture</em>",
         location: "London",
-        price: 100,
+        price: 800,
         spaces: 5,
         image: "images/architect.png"
     },
@@ -67,7 +67,7 @@ let lessons=[
         id: 1009,
         title: "<em>Construction</em>",
         location: "London",
-        price: 100,
+        price: 900,
         spaces: 5,
         image: "images/constr.png"
     },
@@ -75,8 +75,10 @@ let lessons=[
         id: 1010,
         title: "<em>Philosophy</em>",
         location: "London",
-        price: 100,
+        price: 1000,
         spaces: 5,
         image: "images/phil.jpg"
     },
 ]
+
+
