@@ -1,99 +1,133 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Lab Activity</title>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <link
-    type="text/css"
-    rel="stylesheet"
-    href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
-  />
-  <link
-    type="text/css"
-    rel="stylesheet"
-    href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
-  />
-  <script src="https://unpkg.com/vue"></script>
-        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
-    <style>
-        .math {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            box-shadow: 0 0 5px rgb(18, 177, 189);
-            width: 25%;
-            border-radius: 20px;
-            margin: 2%;
-            padding-bottom: 2%;
-        }
-        img {
-            width: 90%;
-            margin: auto;
-        }
-        .page-holder {
-  min-height: 100vh;
-}
-
-.bg-cover {
-  background-size: cover !important;
-}
-  
-    </style>
-</head>
-<body>
-<main>
-    <div style="background-color: whitesmoke;" class="page-holder bg-cover">
-    <div class="container py-5">
-        <header class="text-center text-black py-5">
-    <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
-</header>
-<div class="text-black">
-    <div class="math">
-        <img v-bind:src="subject.image">
-        <div class="subjectDetails">
-            <h2 class="lead" class="lead" v-html="subject.title"></h2>
-            <p class="lead" v-text="subject.location"></p>
-            <p class="lead">Price: "price variable here"</p>
-            <p class="lead">Number of spaces: "spaces calculation here"</p>
-            <input type="button" v-on:click="addToCart" v-if="visible" value="Add to Cart">
-            <button disabled='disabled' v-else>Add To Cart</button>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-</main>
-<script type="text/javascript">
-    new Vue({
-        el: ".math",
-        data: {
-            subject: {
-                id: 1001,
-                title: "<em>Math</em>",
-                location: "London",
-                price: 100,
-                spaces: 5,
-                image: "images/math.jpg"
-            },
-            cart: [],
-        },
-        methods: {
-            addToCart: function () {
-                this.cart.push(this.subject.id);
-            }
-        },
-        computed:{
-            cartCount:function (){
-                return this.cart.length || '';
-                console.log(this.cart.length)
-            },
-            visible: function (){
-                return this.subject.spaces > this.cartCount
-            },
-        }
-    });
-</script>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <title>Lab Activity</title>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <link
+         type="text/css"
+         rel="stylesheet"
+         href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
+         />
+      <link
+         type="text/css"
+         rel="stylesheet"
+         href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
+         />
+      <script src="https://unpkg.com/vue"></script>
+      <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+      <script src = "lessons.js"></script>
+      <style>
+         .math {
+         }
+         img {
+         max-width: 50%;
+    
+         /* margin-top: 10%; */
+         }
+         .page-holder {
+         min-height: 100vh;
+         }
+         *
+         {
+         justify-items: center;
+         margin: auto;
+         }
+         .card{
+         box-shadow: 0 0 20px rgb(226, 221, 221); 
+         border-radius: 15px;
+         }
+      </style>
+   </head>
+   <body>
+      <main>
+         
+            <div style="background-color: whitesmoke;" class="page-holder bg-cover">
+               <div class="container py-5">
+                  <header class="text-center text-black py-5">
+                     <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
+                  </header>
+                  <div class="text-black">
+                     <div class="math">
+                        <div v-if="showLessons">
+                        <div class="container" id="math">
+                           <div class="row">
+                              <div v-for="lessons in lessons" class="col-md-4 col-5 my-1">
+                                 <div class="card h-100">
+                                    <img :src="lessons.image" class="card-img-top">
+                                    <div class="card-body">
+                                       <div class="card-title">
+                                          <h2 class="lead" v-html="lessons.title"></h2>
+                                       </div>
+                                       <p class="lead" v-text="lessons.location"></p>
+                                       <div>
+                                          <span class="badge badge-info">${{ lessons.price }}</span>
+                                       </div>
+                                       <p class="lead">Number of spaces:{{ lessons.spaces - cartCount(lessons.id)}}</p>
+                                       <b-button variant="outline-secondary" v-on:click="addToCart(lessons)" v-if='canAddToCart(lessons)'> Add to Cart </b-button>
+                                       <button disabled='disabled' v-else>Stock Over</button>
+                                       <span v-if='lessons.spaces === cartCount(lessons.id)'>All out!</span>
+                                       <span v-else-if="lessons.spaces - cartCount(lessons.id) < 5">
+                                       Only {{lessons.spaces - cartCount(lessons.id)}} left!</span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div v-else>
+                        <h2>Checkout</h2>
+                     </div>
+                     <button v-on:click='showCheckout'>
+                        {{cartItemCount}}
+                        <i class="fas fa-shopping-cart"></i>Checkout
+                        </button>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      
+      </main>
+      <script type="text/javascript">
+         new Vue({
+             el: ".math",
+             data: {
+               lessons:lessons,
+                 cart: [],
+                 showLessons: true,
+             },
+             methods: {
+                 addToCart(lessons) {
+                     this.cart.push(lessons.id);
+         
+                 },
+                 showCheckout() {
+                         this.showLessons = this.showLessons ? false : true;
+                     },
+                 canAddToCart(lessons){
+                     return lessons.spaces > this.cartCount(lessons.id)
+                 },
+                 cartCount(id) {
+                  let count = 0;
+                  for (let i = 0; i < this.cart.length; i++) {
+                   if (this.cart[i] === id) {
+                         count++;
+           
+               }
+             }
+             return count;
+         
+         }
+             },
+             computed:{
+                 cartItemCount:function (){
+                     return this.cart.length || '';
+                 },
+         }
+         });
+      </script>
+   </body>
 </html>
