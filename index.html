@@ -23,12 +23,6 @@
       <style>
          .math {
          }
-
-         img {
-            
-         max-width: 50%;
-         /* margin-top: 10%; */
-         }
          .page-holder {
          min-height: 100vh;
          }
@@ -38,70 +32,87 @@
          margin: auto;
          }
          .card{
-           
-
+         background-repeat: no-repeat;
+         max-width: 80%;
          box-shadow: 0 0 20px rgb(226, 221, 221); 
          border-radius: 15px;
          }
          header{
-height: 100vh;
-}
-.slide-right {
-   margin-top: 10%;
-  width: 100%;
-  overflow: hidden;
-  margin-left: 250px;
-  max-width: 600px
-}
-
-.slide-right h2 {
-  animation: 1s slide-right 0.5s forwards;
-    transform:translateX(-100%);
-}
-
-@keyframes slide-right {
-  to {
-    transform:translateX(0);
-  }
-}
-.fas.fa-angle-down
-{
-position: absolute;
-bottom:   0;
-}
- </style>
+         height: 100vh;
+         }
+         .slide-right {
+         margin-top: 10%;
+         width: 100%;
+         overflow: hidden;
+         margin-left: 250px;
+         max-width: 600px
+         }
+         .slide-right h2 {
+         animation: 1s slide-right 0.5s forwards;
+         transform:translateX(-100%);
+         }
+         @keyframes slide-right {
+         to {
+         transform:translateX(0);
+         }
+         }
+         .fas.fa-angle-down
+         {
+         position: absolute;
+         bottom:   0;
+         }
+         .card-img-top
+         {
+         border-top-left-radius: 15px;
+         border-top-right-radius: 15px;
+         }
+      </style>
    </head>
    <body>
       <main>
-         
-            <div style="background-color: whitesmoke;" class="page-holder bg-cover">
-               <div class="container py-5">
-                  <header class="text-center text-black py-5">
-                     <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
-                     <div class="slide-right">
-                        <br>
-                        <h2>Hi There! Scroll down for the bookstore</h2>
-                        <!-- <i class="fas fa-angle-down fa-2x "></i> -->
-                      </div>
-                  </header>
-                  <p class="lead">Number of spaces</p>
-                  <div class="text-black">
-                     <div class="math">
-
-                      
-                        <div class="container" id="math">
-                           <div v-if="showLessons">
-                                   <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" @click="sortBy('price')" >
-                              <label class="form-check-label" for="inlineRadio1">Sort by Price</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"  @click="sortBy('title')"value="Sort by Price" >
-                              <label class="form-check-label" for="inlineRadio2">Sort by Name</label>
-                            </div>
+         <div style="background-color: whitesmoke;" class="page-holder bg-cover">
+            <div class="container py-5">
+               <header class="text-center text-black py-5">
+                  <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
+                  <div class="slide-right">
+                     <br>
+                     <h2>Hi There! Scroll down for the bookstore</h2>
+                     <!-- <i class="fas fa-angle-down fa-2x "></i> -->
+                  </div>
+               </header>
+               <div class="text-black">
+                  <div class="math">
+                     <div class="container" id="math">
+                        <div v-if="showLessons">
+                           <form>
+                              <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="radio" id="price" v-model="category"  value="price" >
+                                 <label class="form-check-label" for="inlineRadio1">Sort by Price</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="radio" id="inlineRadio2" v-model="category"  value="title">
+                                 <label class="form-check-label" for="inlineRadio2">Sort by Name</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="radio" id="inlineRadio3"v-model="category" value="location"  >
+                                 <label class="form-check-label" for="inlineRadio1">Sort by Location</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                 <input class="form-check-input" type="radio" name="radio" id="inlineRadio4"v-model="category" value="spaces"  >
+                                 <label class="form-check-label" for="inlineRadio1">Sort by Stock</label>
+                              </div>
+                           </form>
+                           <form id="test"></form>
+                           <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="radio2" id="inlineRadio5" v-model="order"   value="asc" >
+                              <label class="form-check-label" for="inlineRadio2">Sort by asc</label>
+                           </div>
+                           <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="radio2" id="inlineRadio5" v-model="order"  value="desc" >
+                              <label class="form-check-label" for="inlineRadio2">Sort by desc</label>
+                           </div>
                            <div class="row">
-                            <div v-for="lessons in lessons"  class="col-md-4 col-5 my-1">  
-            
+                              <div v-for="lessons in sortAsc"  class="col-md-4 col-5 my-1">
                                  <div class="card h-100">
                                     <img :src="lessons.image" class="card-img-top">
                                     <div class="card-body">
@@ -117,35 +128,31 @@ bottom:   0;
                                        <button disabled='disabled' v-else>Stock Over</button>
                                        <span v-if='lessons.spaces === cartCount(lessons.id)'>All out!</span>
                                        <span v-else-if="lessons.spaces - cartCount(lessons.id) < 5">
-                                       Only {{lessons.spaces - cartCount(lessons.id)}} left!</span>
+                                       Only {{lessons.spaces}} left!</span>
                                        <span v-else>Buy now!</span>
+                                    </div>
                                  </div>
                               </div>
                            </div>
+                           <button v-on:click='showCheckout'>
+                              {{cartItemCount}}
+                              <i class="fas fa-shopping-cart"></i>Checkout
+                              </button>
+                        </div>
+                        <div v-else>
+                           <button v-on:click='showCheckout'>
+                              {{cartItemCount}}
+                              <i class="fas fa-shopping-cart"></i>Checkout
+                              </button>
+                           <h2>Checkout</h2>
                         </div>
                      </div>
-                     <div v-else>
-                        <h2>Checkout</h2>
-                     <button v-on:click='showCheckout'>
-                        {{cartItemCount}}
-                        <i class="fas fa-shopping-cart"></i>Checkout
-                        </button>
-                     </div>
-                     
                   </div>
-                  
-                 </div>
                </div>
             </div>
-
-                  </div>
-                  </div>
-                     
-                  
-          
+         </div>
       </main>
       <script type="text/javascript">
-  
          new Vue({
              el: ".math",
              data: {
@@ -153,17 +160,17 @@ bottom:   0;
                  cart: [],
                  showLessons: true,
                  show:'one',
-                 sort:lessons
+                 sort:lessons,
+                 category:"",
+                 order:""
              },
              methods: {
                  addToCart(lessons) {
                      this.cart.push(lessons.id);
-         
+                     this.lessons.spaces--;
                  },
-                 
-                 sortBy: function(key) {
-      sortBy(this.sort, key)
-    },
+         
+                
                  showCheckout() {
                          this.showLessons = this.showLessons ? false : true;
                      },
@@ -183,30 +190,69 @@ bottom:   0;
          }
              },
              computed:{
+               sortAsc(){
+                  if(this.category=="price")
+                  {
+                     if(this.order=="asc")
+                  {
+                  this.lessons.sort((a, b) => (a.price > b.price) ? 1 : -1)
+                  }
+                  else if(this.order=="desc"){
+                     this.lessons.sort((a, b) => (a.price < b.price) ? 1 : -1)
+                  }
+                  }
+                  else if(this.category=="title")
+                  {
+                     if(this.order=="asc")
+                  {
+                  this.lessons.sort((a, b) => (a.title > b.title) ? 1 : -1)
+                  }
+                  else if(this.order=="desc"){
+                     this.lessons.sort((a, b) => (a.title < b.title) ? 1 : -1)
+                  }
+                  }
+                  else if(this.category=="location")
+                  {
+                     if(this.order=="asc")
+                  {
+                  this.lessons.sort((a, b) => (a.location > b.location) ? 1 : -1)
+                  }
+                  else if(this.order=="desc"){
+                     this.lessons.sort((a, b) => (a.location < b.location) ? 1 : -1)
+                  }
+                
+                  }
+                  else if(this.category=="spaces")
+                  {
+                     if(this.order=="asc")
+                  {
+                  this.lessons.sort((a, b) => (a.spaces > b.spaces) ? 1 : -1)
+                  }
+                  else if(this.order=="desc"){
+                     this.lessons.sort((a, b) => (a.spaces < b.spaces) ? 1 : -1)
+                  }
+                  }
+                  return lessons;
+                 },
                 
                  cartItemCount:function (){
                      return this.cart.length || '';
                  },
                  sortedLessons() {
-        let productsArray = this.lessons.slice(0);
-        function compare(a, b) {
+         let productsArray = this.lessons.slice(0);
+         function compare(a, b) {
             if (a.price > b.price)
                 return 1;
             if (a.price < b.price)
                 return -1;
-return 0; }
-        return productsArray.sort(compare);
-        
-    },
+         return 0; }
+         return productsArray.sort(compare);
+         
+         },
          }
          });
-         function sortBy(arr, key) {
-    return arr.sort(function (a, b) {
-      if (a[key] < b[key]) return -1
-      if (a[key] > b[key]) return  1
-      return 0
-    })
-}
+         
+         
       </script>
    </body>
 </html>

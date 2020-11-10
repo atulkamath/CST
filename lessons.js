@@ -36,13 +36,13 @@ let lessons=[
         title: "<em>Physics</em>",
         location: "London",
         price: 500,
-        spaces: 5,
+        spaces: 8,
         image: "images/physics.jpg"
     },
     {
         id: 1006,
         title: "<em>Chemistry</em>",
-        location: "London",
+        location: "India",
         price: 600,
         spaces: 5,
         image: "images/chem.jpg"
