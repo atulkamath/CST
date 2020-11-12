@@ -13,7 +13,7 @@ let lessons=[
         location: "London",
         price: 200,
         spaces: 5,
-        image: "images/science.jpg"
+        image: "images/science.png"
     },
     {
         id: 1003,
@@ -36,7 +36,7 @@ let lessons=[
         title: "<em>Physics</em>",
         location: "London",
         price: 500,
-        spaces: 8,
+        spaces: 5,
         image: "images/physics.jpg"
     },
     {
@@ -53,7 +53,7 @@ let lessons=[
         location: "London",
         price: 700,
         spaces: 5,
-        image: "images/sales.png"
+        image: "images/sales.jpg"
     },
     {
         id: 1008,
@@ -61,7 +61,7 @@ let lessons=[
         location: "London",
         price: 800,
         spaces: 5,
-        image: "images/architect.png"
+        image: "images/architect.jpg"
     },
     {
         id: 1009,
