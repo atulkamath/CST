@@ -1,6 +1,7 @@
 body{
-    height:3000px;
-    background: linear-gradient(141deg, rgb(235, 233, 233) 0%, rgb(255, 255, 255) 51%, white 75%);
+
+    height:1000px;
+    background:whitesmoke;
  }
  .radioDesign
  {
@@ -19,7 +20,11 @@ padding-top: 50px;
 
 
 }
-
+.form-group
+{
+    text-align: left;
+    max-width: 50%;
+}
 .outercontainer {
 margin: 0px auto;
 border: 1px solid #a6a6a6;
@@ -47,10 +52,11 @@ background-color: #0032a0;
  margin: auto;
  }
  .card{
+
  background-repeat: no-repeat;
- max-width: 70%;
+ max-width: 75%;
  box-shadow: 0 0 20px rgb(226, 221, 221); 
- border-radius: 15px;
+
  }
  .card2{
  background-repeat: no-repeat;
@@ -81,7 +87,48 @@ background-color: #0032a0;
 
  }
  }
+ .img3
+ {
+     width: 50%;
+     height: auto;
+ }
+.cardContainer
+{
+    
+    align-content: center;
+    position: relative;
+    text-align: center;
 
+}
+.check
+{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 4vh;
+    text-align: center;
+    font-weight: 300;
+}
+.bottom-left {
+    color: gold;
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    font-size: 40px;
+  }
+  .bottom-leftLast {
+    color: gold;
+    position: absolute;
+    bottom: 15%;
+    left: 15%;
+    font-size: 40px;
+  }
+  .bottom-left2 {
+      color: gold;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    font-size: 40px;
+  }
  .fas.fa-angle-down
  {
  position: absolute;
@@ -89,10 +136,11 @@ background-color: #0032a0;
  }
  .card-img-top
  {
- border-top-left-radius: 15px;
- border-top-right-radius: 15px;
+ border-top-left-radius: 25px;
+ border-top-right-radius: 25px;
 
  }
+ 
  .headimg{
     max-width: 30%;
  }

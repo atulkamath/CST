@@ -81,4 +81,9 @@ let lessons=[
     },
 ]
 
-
+function masking(input, textbox) {
+    if (input.length == 4 || input.length == 9 || input.length == 14) {
+        input = input + '-';
+        textbox.value = input;
+    }
+}

@@ -25,155 +25,156 @@
    <body>
       <main>
          <a name="top">
-               <div class="text-black">
-                  <div class="math">
-               
-                     <div class="container" id="math">
-                        
-                        <template v-if="showLessons">
-                           <div  class="page-holder bg-cover">
-                              <div class="container py-5">
-                                 <header class="text-center text-black py-5">
-                                    <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
-                                    
-                                    <br> <br>
-                                    <img class="headimg"src='images/book.svg'>
-                                    <div class="slide-right">
-                                       <br>
-                                       <!-- <h2>Hi There! Scroll down for the bookstore</h2> -->
-                                       <!-- <i class="fas fa-angle-down fa-2x "></i> -->
-                                    </div>
-                                 </header>
-                              </a>
-                           <form >
-                              <div class="radioDesign">
-                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="radio" name="radio" id="price" v-model="category"  value="price" >
-                                 <label class="form-check-label" for="inlineRadio1">Sort by Price</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="radio" name="radio" id="inlineRadio2" v-model="category"  value="title">
-                                 <label class="form-check-label" for="inlineRadio2">Sort by Name</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="radio" name="radio" id="inlineRadio3"v-model="category" value="location"  >
-                                 <label class="form-check-label" for="inlineRadio1">Sort by Location</label>
-                              </div>
-                              <div class="form-check form-check-inline">
-                                 <input class="form-check-input" type="radio" name="radio" id="inlineRadio4"v-model="category" value="spaces"  >
-                                 <label class="form-check-label" for="inlineRadio1">Sort by Stock</label>
-                              </div>
-                           </form>
-                           <form id="test">
-                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="radio2" id="inlineRadio5" v-model="order"   value="asc" >
-                              <label class="form-check-label" for="inlineRadio2">Sort by asc</label>
-                           </div>
-                           <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="radio2" id="inlineRadio5" v-model="order"  value="desc" >
-                              <label class="form-check-label" for="inlineRadio2">Sort by desc</label>
-                           </div>
-                        </form>
+            <div class="text-black">
+            <div class="math">
+            <div class="container" id="math">
+            <template v-if="showLessons">
+               <div  class="page-holder bg-cover">
+                  <div class="container py-5">
+                     <header class="text-center text-black py-5">
+                        <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
                         <br> <br>
-                           <div class="row">
-                              <div v-for="lessons in sortAsc"  class="col-md-4 col-5 my-1 mt-5">
-                                 <div class="card h-100">
-                                    <img :src="lessons.image" class="card-img-top">
-                                    <div class="card-body">
-                                       <div class="card-title">
-                                          <h2 class="lead" v-html="lessons.title"></h2>
-                                       </div>
-                                       <p class="lead" v-text="lessons.location"></p>
-                                       <div>
-                                          <span class="badge badge-info">${{ lessons.price }}</span>
-                                       </div>
-                                       <p class="lead">Number of spaces:{{ lessons.spaces}}</p>
-                                       <b-button variant="outline-secondary" v-on:click="addToCart(lessons)" v-if='canAddToCart(lessons)'> Add to Cart </b-button>
-                                       <button disabled='disabled' v-else>Stock Over</button>
-                                       <span v-if='lessons.spaces === cartCount(lessons.id)'>All out!</span>
-                                       <span v-else-if="lessons.spaces - cartCount(lessons.id) < 5">
-                                       Only {{lessons.spaces }} left!</span>
-                                       <span v-else>Buy now!</span>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <template v-if="cart.length >0">
-                           <button  v-on:click='showCheckout'>
-                              <a href="#top">Checkout</a>
-                              {{cartItemCount}}
-                              <i class="fas fa-shopping-cart"></i>
-                              </button>
-                           </template>
-                           <button disabled='disabled'  v-else>Please add items to Checkout</button>
-                           </template>
-                        <template v-else>   
-                           <div>
-                              <button v-on:click='showCheckout'>
-                                 {{cartItemCount}}
-                                 <i class="fas fa-shopping-cart"></i>Back to Product List
-                                 </button>
-                           <h2>Checkout</h2>
-                           <div class="row justify-content-start">
-                           <div v-for="lessons in sortAsc" class="col-md-4 col-5 my-1 mt-5">
-                              <template v-if="checkSubject(lessons.id)">
-                              <div class="card h-100">
-                                 <img :src="lessons.image" class="card-img-top">
-                                 <div class="card-body">
-                                    <div class="card-title">
-                                       <h2 class="lead" v-html="lessons.title"></h2>
-                                    </div>
-                                    <p class="lead" v-text="lessons.location"></p>
-                                    <div>
-                                       <span class="badge badge-info">${{ lessons.price }}</span>
-                                    </div>
-                                    <p class="lead">In cart x :{{ Math.abs(5 - lessons.spaces )}}</p>
-                                    
-                                    <b-button variant="outline-danger" v-on:click="removeFromCart(lessons)"> Remove from Cart </b-button>
-                            
-                                 </div>
-                              </div>
-                              </template>
-                           </div>
-                           </div>
-                           <form class="text-center">
-                              <p>
-                                 <div class="form-row mb-4">
-                                    <div class="col">
-                                 <strong>First Name: </strong>
-                                 <input v-model.trim="orders.firstName">
-                             </p>
-                             <p>
-                                 <strong>Last Name: </strong>
-                                 <input v-model.trim="orders.lastName">
-                             </p>
-                             <p><strong>Phone: </strong> <input v-model="orders.Phone"> </p>
-                             <p><strong>cardNo: </strong> <input v-model="orders.cardNo"> </p>
-                             
-                                 
-                         
-      
-                         <img src="images/card.png">
-                             <h2>Order information</h2>
-                             <p> First Name: {{orders.firstName}}</p>
-                             <p>Last Name: {{orders.lastName}}</p>
-                             <p>Phone: {{orders.Phone}}</p>
-                             <p>cardNo: {{orders.cardNo}}</p>
-                           
-                             <button v-on:click = "submitForm">Submit Order</button>
-                           </div>
-                          
-                       </template>
-                      
-                   
-                  </div>
-                  </div>
-        </div>
-        </div>
-        </div>
-        
+                        <img class="headimg"src='images/book.svg'>
+                    
+                     </header>
+         </a>
+         <form>
+         <div class="radioDesign">
+         <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="radio" id="price" v-model="category"  value="price" >
+         <label class="form-check-label" for="inlineRadio1">Sort by Price</label>
+         </div>
+         <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="radio" id="inlineRadio2" v-model="category"  value="title">
+         <label class="form-check-label" for="inlineRadio2">Sort by Name</label>
+         </div>
+         <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="radio" id="inlineRadio3"v-model="category" value="location"  >
+         <label class="form-check-label" for="inlineRadio1">Sort by Location</label>
+         </div>
+         <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="radio" id="inlineRadio4"v-model="category" value="spaces"  >
+         <label class="form-check-label" for="inlineRadio1">Sort by Stock</label>
+         </div>
+         </form>
+         <form id="test">
+         <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="radio2" id="inlineRadio5" v-model="order"   value="asc" >
+         <label class="form-check-label" for="inlineRadio2">Sort by asc</label>
+         </div>
+         <div class="form-check form-check-inline">
+         <input class="form-check-input" type="radio" name="radio2" id="inlineRadio5" v-model="order"  value="desc" >
+         <label class="form-check-label" for="inlineRadio2">Sort by desc</label>
+         </div>
+         </form>
+         <br> <br>
+         <div class="row">
+         <div v-for="lessons in sortAsc"  class="col-md-4 col-5 my-1 mt-5">
+         <div class="card h-100">
+         <img :src="lessons.image" class="card-img-top">
+         <div class="card-body">
+         <div class="card-title">
+         <h2 class="lead" v-html="lessons.title"></h2>
+         </div>
+         <p class="lead" v-text="lessons.location"></p>
+         <div>
+         <span class="badge badge-info">${{ lessons.price }}</span>
+         </div>
+         <p class="lead">Number of spaces:{{ lessons.spaces}}</p>
+         <b-button variant="outline-secondary" v-on:click="addToCart(lessons)" v-if='canAddToCart(lessons)'> Add to Cart </b-button>
+         <button disabled='disabled' v-else>Stock Over</button>
+         <span v-if='lessons.spaces === cartCount(lessons.id)'>All out!</span>
+         <span v-else-if="lessons.spaces - cartCount(lessons.id) < 5">
+         Only {{lessons.spaces }} left!</span>
+         <span v-else>Buy now!</span>
+         </div>
+         </div>
+         </div>
+         </div>
+         <template v-if="cart.length >0">
+         <button  v-on:click='showCheckout'>
+         <a href="#top">Checkout</a>
+         {{cartItemCount}}
+         <i class="fas fa-shopping-cart"></i>
+         </button>
+         </template>
+         <button disabled='disabled'  v-else>Please add items to Checkout</button>
+         </template>
+         <template v-else>   
+         <h2 class="check">Checkout</h2>
+         <div class="col text-center">
+         <b-button variant="outline-primary" v-on:click='showCheckout'>
+         {{cartItemCount}}
+         <i class="fas fa-shopping-cart"></i>Back to Product List
+         </b-button>
+      </div>
+         <div class="row justify-content-start">
+         <div v-for="lessons in sortAsc" class="col-md-4 col-5 my-1 mt-5">
+         <template v-if="checkSubject(lessons.id)">
+         <div class="card h-100">
+         <img :src="lessons.image" class="card-img-top">
+         <div class="card-body">
+         <div class="card-title">
+         <h2 class="lead" v-html="lessons.title"></h2>
+         </div>
+         <p class="lead" v-text="lessons.location"></p>
+         <div>
+         <span class="badge badge-info">${{ lessons.price }}</span>
+         </div>
+         <p class="lead">In cart x :{{ Math.abs(5 - lessons.spaces )}}</p>
+         <b-button variant="outline-danger" v-on:click="removeFromCart(lessons)"> Remove from Cart </b-button>
+         </div>
+         </div>
+         </template>
+         </div>
+         </div>
+       
+            <form class="text-center">
+               <div class="form-group">
+                 <label>First Name</label>
+                 <input class="form-control"  aria-describedby="emailHelp" placeholder="Enter First Name"v-model.trim="orders.firstName" onkeypress="return /[a-z]/i.test(event.key)">
+               </div>
+               <div class="form-group">
+                  <label >Last Name</label>
+                  <input class="form-control"  aria-describedby="emailHelp" placeholder="Enter Last Name"input  v-model.trim="orders.lastName" onkeypress="return /[a-z]/i.test(event.key)">
+                </div>
+                <div class="form-group">
+                  <label >Phone Number</label>
+                  <input class="form-control"  aria-describedby="emailHelp" placeholder="Please enter numericals only"input  v-model.trim="orders.Phone" onkeypress="return /[0-9]/i.test(event.key)">
+                  <small id="emailHelp" class="form-text text-muted">{{orders.Phone}}</small>
+                </div>
+                <div class="form-group">
+                  <label>Credit Card Info</label>
+                  <input class="form-control"  placeholder="Enter Card Number"  v-model.trim="orders.cardNo"  onkeypress="return /[0-9]/i.test(event.key) && masking(this.value,this);"   id="credit" type="text" maxlength="19" autocomplete="off"/>
+                </div>
+</form>
+
+         <div class ="cardContainer img3">
+            <img src="images/card.png" alt="card">
+            <div class="bottom-left">
+               {{orders.firstName}}
+            </div>
+            <div class="bottom-leftLast">{{orders.lastName}}</div>
+            <div class="bottom-left2" >{{orders.cardNo}}</div>
+      </div>
+      <template v-if='orders.firstName !=="" && orders.lastName !==""&& orders.Phone!=="" '>
+         <b-button variant='outline-primary' v-on:click = "submitForm">Submit Order</b-button>
+   
+      </template>   
+      <template v-else>
+         <b-button style="align-self: center; margin-top: 5%; "variant='outline-primary' disabled='disabled'>Please check all the inputs</button>
+      </template>
+   </template>
+
+ </div>     
+</div>
+</div>
+</div>
+</div>
+</div>
       </main>
       <script type="text/javascript">
+      
          new Vue({
              el: ".math",
              data: {
@@ -190,20 +191,9 @@
                     lastName: '',
                     Phone: '',
                     cardNo: '',
-                    zip:'',
-                    state: '',
-                    postalCode: '',
-                    method:'Home',
-                    gift: '',
-                    sendGift:'Send as a gift',
-                    dontSendGift:'Do not send as a gift'
+                 
                 },
-                states: {
-                    AL: 'Alabama',
-                    AR: 'Arizona',
-                    CA: 'California',
-                    NV: 'Nevada'
-                },
+                
                  
              },
              methods: {
@@ -261,8 +251,8 @@
              },
              computed:{
                sortAsc(){
-
-  
+         
+         
                    if(this.category=="price")
                   {
                      if(this.order=="asc")
@@ -319,7 +309,7 @@
                
          }
          });
- 
+
       </script>
    </body>
 </html>
