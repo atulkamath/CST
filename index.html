@@ -13,11 +13,7 @@
          rel="stylesheet"
          href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"
          />
-      <link
-         type="text/css"
-         rel="stylesheet"
-         href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"
-         />
+
       <script src="https://unpkg.com/vue"></script>
       <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
       <script src = "lessons.js"></script>
@@ -69,7 +65,7 @@
          </form>
          <br> <br>
          <div class="row">
-         <div v-for="lessons in sortAsc"  class="col-md-4 col-5 my-1 mt-5">
+         <div v-for="lessons in sortAsc"  class="col-md-4 col-sm-5 my-1 mt-5">
          <div class="card h-100">
          <img :src="lessons.image" class="card-img-top">
          <div class="card-body">
@@ -92,13 +88,13 @@
          </div>
          </div>
          <template v-if="cart.length >0">
-         <button  v-on:click='showCheckout'>
+         <b-button style="margin-top: 2%;" variant="outline-primary"  v-on:click='showCheckout'>
          <a href="#top">Checkout</a>
          {{cartItemCount}}
          <i class="fas fa-shopping-cart"></i>
          </button>
          </template>
-         <button disabled='disabled'  v-else>Please add items to Checkout</button>
+         <b-button variant="outline-danger" style="margin-top: 2%;" disabled='disabled'  v-else>Please add items to Checkout</button>
          </template>
          <template v-else>   
          <h2 class="check">Checkout</h2>
@@ -108,8 +104,9 @@
          <i class="fas fa-shopping-cart"></i>Back to Product List
          </b-button>
       </div>
-         <div class="row justify-content-start">
-         <div v-for="lessons in sortAsc" class="col-md-4 col-5 my-1 mt-5">
+      
+         <div v-for="lessons in sortAsc" class=" col-md-5 my-1 mt-5">
+            <div class="container">
          <template v-if="checkSubject(lessons.id)">
          <div class="card h-100">
          <img :src="lessons.image" class="card-img-top">
@@ -128,7 +125,7 @@
          </template>
          </div>
          </div>
-       
+         <div class="container">
             <form class="text-center">
                <div class="form-group">
                  <label>First Name</label>
@@ -148,24 +145,23 @@
                   <input class="form-control"  placeholder="Enter Card Number"  v-model.trim="orders.cardNo"  onkeypress="return /[0-9]/i.test(event.key) && masking(this.value,this);"   id="credit" type="text" maxlength="19" autocomplete="off"/>
                 </div>
 </form>
-
          <div class ="cardContainer img3">
-            <img src="images/card.png" alt="card">
+            <img src="images/card.png" class="img-fluid" alt="card">
             <div class="bottom-left">
                {{orders.firstName}}
             </div>
             <div class="bottom-leftLast">{{orders.lastName}}</div>
             <div class="bottom-left2" >{{orders.cardNo}}</div>
       </div>
-      <template v-if='orders.firstName !=="" && orders.lastName !==""&& orders.Phone!=="" '>
-         <b-button variant='outline-primary' v-on:click = "submitForm">Submit Order</b-button>
+      <template v-if='orders.firstName !=="" && orders.lastName !==""&& orders.Phone!=="" && cart.length!==0 '>
+         <b-button style="margin-bottom: 6%; margin-left: 45%; align-self: center; margin-top: 5%; "variant='outline-primary' v-on:click = "submitForm">Submit Order</b-button>
    
       </template>   
       <template v-else>
-         <b-button style="align-self: center; margin-top: 5%; "variant='outline-primary' disabled='disabled'>Please check all the inputs</button>
+         <b-button style="margin-bottom: 5%; margin-left: 35%; align-self: center; margin-top: 6%; " variant='outline-danger' disabled='disabled'>Please check all the input fields or your cart</b-button>
       </template>
    </template>
-
+</div>
  </div>     
 </div>
 </div>
@@ -194,23 +190,21 @@
                  
                 },
                 
-                 
              },
              methods: {
                  addToCart(lessons) {
                      this.cart.push(lessons.id);
-                     // this.cart.push(lessons.image);
-                     //this.lessons.spaces-1;
                      lessons.spaces--;
                  },
                  removeFromCart(lessons)
                  {
-          
+                  lessons.spaces++;
                   this.cart.splice(this.cart.indexOf(lessons.id), 1);
          
                  },
                  submitForm() {
-                    alert('Order submitted!')
+                    alert('Thank you for your order '+this.orders.firstName +" "+this.orders.lastName)
+                    
                 },
                 checkSubject(id){
                    let length=this.cart.length;

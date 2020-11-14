@@ -8,8 +8,8 @@ body{
     text-align: center;
     margin-bottom: 5%;
  }
- /* .math {
- } */
+.math {
+ } 
  .page-holder {
  min-height: 100vh;
  }
@@ -53,17 +53,11 @@ background-color: #0032a0;
  }
  .card{
 
- background-repeat: no-repeat;
  max-width: 75%;
- box-shadow: 0 0 20px rgb(226, 221, 221); 
-
- }
- .card2{
- background-repeat: no-repeat;
- max-width: 20%;
  box-shadow: 0 0 20px rgb(226, 221, 221); 
  border-radius: 15px;
  }
+
  header{
 
  height: 100vh;
@@ -100,6 +94,7 @@ background-color: #0032a0;
     text-align: center;
 
 }
+.nowrap{white-space: nowrap;}
 .check
 {
     margin-top: 2%;
@@ -118,7 +113,7 @@ background-color: #0032a0;
   .bottom-leftLast {
     color: gold;
     position: absolute;
-    bottom: 15%;
+    bottom: 12%;
     left: 15%;
     font-size: 40px;
   }

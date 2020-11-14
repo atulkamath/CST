@@ -34,7 +34,7 @@ let lessons=[
     {
         id: 1005,
         title: "<em>Physics</em>",
-        location: "London",
+        location: "Spain",
         price: 500,
         spaces: 5,
         image: "images/physics.jpg"
@@ -50,7 +50,7 @@ let lessons=[
     {
         id: 1007,
         title: "<em>Sales</em>",
-        location: "London",
+        location: "Argentina",
         price: 700,
         spaces: 5,
         image: "images/sales.jpg"
@@ -66,7 +66,7 @@ let lessons=[
     {
         id: 1009,
         title: "<em>Construction</em>",
-        location: "London",
+        location: "Dubai",
         price: 900,
         spaces: 5,
         image: "images/constr.png"
