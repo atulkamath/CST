@@ -79,7 +79,7 @@
          <p class="lead">Number of spaces:{{ lessons.spaces}}</p>
          <b-button variant="outline-secondary" v-on:click="addToCart(lessons)" v-if='canAddToCart(lessons)'> Add to Cart </b-button>
          <button disabled='disabled' v-else>Stock Over</button>
-         <span v-if='lessons.spaces === cartCount(lessons.id)'>All out!</span>
+         <span v-if='lessons.spaces ===0'>All out!</span>
          <span v-else-if="lessons.spaces - cartCount(lessons.id) < 5">
          Only {{lessons.spaces }} left!</span>
          <span v-else>Buy now!</span>
