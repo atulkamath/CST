@@ -28,7 +28,7 @@
                <div  class="page-holder bg-cover">
                   <div class="container py-5">
                      <header class="text-center text-black py-5">
-                        <h1 class="display-4 font-weight-bold mb-4">The Bookshop</h1>
+                        <h1 class="display-4 font-weight-bold mb-4">After School Club</h1>
                         <br> <br>
                         <img class="headimg"src='images/book.svg'>
                     
@@ -175,7 +175,6 @@
              el: ".math",
              data: {
                lessons:lessons,
-               
                  cart: [],
                  showLessons: true,
                  show:'one',
@@ -279,22 +278,17 @@
                 
                   }
                   else  if(this.category === "spaces"){
-                            var sortedArray = this.lessons.sort((a,b) => a.spaces > b.spaces ? 1:-1);
+                        var sortedArray = this.lessons.sort((a,b) => a.spaces > b.spaces ? 1:-1);
                             
-                            if(this.category === "spaces" && this.order === 'asc'){
+                        if(this.category === "spaces" && this.order === 'asc'){
                                 sortedArray.sort((a,b)=> a.spaces > b.spaces ? 1:-1)
-                            }
+                           }
                             if(this.category === "spaces" && this.order === 'desc'){
                                 sortedArray.sort((a,b)=> a.spaces < b.spaces ? 1:-1)
                             }
                         }
                   return lessons;
                  },
-                cartDisplay()
-                {
-                        return this.lessons.image || '';
-                },
-               
                
                  cartItemCount:function (){
                      return this.cart.length || '';
