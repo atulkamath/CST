@@ -55,7 +55,12 @@ background-color: #0032a0;
 
  max-width: 75%;
  box-shadow: 0 0 20px rgb(226, 221, 221); 
- border-radius: 15px;
+
+
+ }
+ .img-top{
+    border-top-left-radius: 25px;
+    border-top-left-radius: 25px;
  }
 
  header{
@@ -86,7 +91,7 @@ background-color: #0032a0;
      width: 50%;
      height: auto;
  }
-.cardContainer
+.ccContainer
 {
     
     align-content: center;
@@ -129,12 +134,7 @@ background-color: #0032a0;
  position: absolute;
  bottom:   0;
  }
- .card-img-top
- {
- border-top-left-radius: 25px;
- border-top-right-radius: 25px;
 
- }
  
  .headimg{
     max-width: 30%;

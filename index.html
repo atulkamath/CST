@@ -64,9 +64,9 @@
          </div>
          </form>
          <br> <br>
-         <div class="row">
+         <div class="row ">
          <div v-for="lessons in sortAsc"  class="col-md-4 col-sm-5 my-1 mt-5">
-         <div class="card h-100">
+         <div class="card h-100  ">
          <img :src="lessons.image" class="card-img-top">
          <div class="card-body">
          <div class="card-title">
@@ -145,7 +145,7 @@
                   <input class="form-control"  placeholder="Enter Card Number"  v-model.trim="orders.cardNo"  onkeypress="return /[0-9]/i.test(event.key) && masking(this.value,this);"   id="credit" type="text" maxlength="19" autocomplete="off"/>
                 </div>
 </form>
-         <div class ="cardContainer img3">
+         <div class ="ccContainer img3">
             <img src="images/card.png" class="img-fluid" alt="card">
             <div class="bottom-left">
                {{orders.firstName}}
